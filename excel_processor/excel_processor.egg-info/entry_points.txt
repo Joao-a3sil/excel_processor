@@ -1,2 +1,0 @@
-[console_scripts]
-run = excel_processor.main:main

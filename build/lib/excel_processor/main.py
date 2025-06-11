@@ -3,7 +3,7 @@ from excel_processor.processor.bolsa.process import process_bolsa
 from excel_processor.processor.novo_bolsa.process import process_novo_bolsa
 from excel_processor.processor.parcela.process import process_parcela
 from excel_processor.processor.dih_pay.process import process_dih_pay
-from excel_processor.processor.excelConsolidator.process import gerar_data_base
+from excel_processor.processor.excel_consolidator.process import gerar_data_base
 
 @medir_tempo_execucao_total
 def main():    

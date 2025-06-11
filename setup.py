@@ -26,7 +26,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'run=excel_processor.main:main',
+            # 'run=excel_processor.main:main',
+            'run=src.backend.main:main'
         ],
     },
 )

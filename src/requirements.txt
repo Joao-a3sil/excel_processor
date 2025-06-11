@@ -1,0 +1,3 @@
+DearPyGui
+numpy
+pandas
