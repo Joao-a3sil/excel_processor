@@ -98,7 +98,7 @@ def medir_tempo_execucao(funcao):
         t.join()
         tempo_total = time.time() - tempo_inicial
         minutos, segundos = divmod(tempo_total, 60)                
-        print(f"{funcao.__name__} finalizado em {int(minutos)}:{int(segundos)}.")
+        print(f"{funcao.__name__} finalizado em {int(minutos)} minutos e {int(segundos)} segundos.")
         return resultado
     return wrapper
 

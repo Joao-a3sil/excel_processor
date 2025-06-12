@@ -7,12 +7,12 @@ from excel_processor.processor.excelConsolidator.process import gerar_data_base
 
 @medir_tempo_execucao_total
 def main():    
-    arquivo_processado = get_input_file()
-    print(f"Processando arquivo: {arquivo_processado.stem}")
-    process_dih_pay()
-    process_bolsa()
-    process_novo_bolsa()
-    process_parcela()
+    # arquivo_processado = get_input_file()
+    # print(f"Processando arquivo: {arquivo_processado.stem}")
+    # process_dih_pay()
+    # process_bolsa()
+    # process_novo_bolsa()
+    # process_parcela()
     gerar_data_base()    
 
 if __name__ == "__main__":
