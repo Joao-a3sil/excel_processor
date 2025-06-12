@@ -1,4 +1,4 @@
-from excel_processor.processor.utils.util import (
+from backend.excel_processor.processor.utils.util import (
     get_input_file,
     get_project_path,
     medir_tempo_execucao,

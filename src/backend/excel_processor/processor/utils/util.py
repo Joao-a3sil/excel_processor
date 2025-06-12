@@ -88,7 +88,7 @@ def medir_tempo_execucao(funcao):
                 sys.stdout.write(f"\rExecutando {funcao.__name__}... {simbolos[idx % len(simbolos)]} {int(tempo_passado)}s")
                 sys.stdout.flush()
                 idx += 1
-                time.sleep(0.1)
+                time.sleep(1)
             sys.stdout.write("\r" + " " * 50 + "\r")  # Limpa a linha
 
         t = threading.Thread(target=spinner)
