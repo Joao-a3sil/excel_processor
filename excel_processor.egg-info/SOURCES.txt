@@ -25,12 +25,10 @@ src/backend/excel_processor/processor/utils/__init__.py
 src/backend/excel_processor/processor/utils/util.py
 src/frontend/__init__.py
 src/frontend/app.py
-src/frontend/gui.py
-src/frontend/main.py
 src/frontend/components/__init__.py
 src/frontend/components/btn_search.py
 src/frontend/components/components.py
-src/frontend/components/log_panel.py
 src/frontend/utils/__init__.py
-src/frontend/utils/log.py
+src/frontend/windows/__init__.py
+src/frontend/windows/window.py
 src/utils/__init__.py

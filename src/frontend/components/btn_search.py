@@ -1,20 +1,41 @@
 from pathlib import Path
 import shutil
-from PySide6.QtWidgets import QFileDialog, QPushButton
-
-from frontend.utils.log import log_info
+from PySide6.QtWidgets import QFileDialog, QPushButton, QMessageBox
 
 INPUT_DIR = Path(__file__).resolve().parent.parent / "backend" / "excel_processor" / "input"
+print(f"INPUT_DIR: {INPUT_DIR}")
 
 class BtnSearch(QPushButton):
-    def __init__(self, log_widget, parent=None):
+    def __init__(self, label_arquivo, parent=None):
         super().__init__("Adicionar arquivo", parent)
-        self.log_widget = log_widget
+        self.label_arquivo = label_arquivo
         self.clicked.connect(self.show_file_dialog)
 
     def show_file_dialog(self):
-        file_path, _ = QFileDialog.getOpenFileName(self, "Selecionar arquivo", "", "Excel Files (*.xlsx *.xls)")
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Selecionar arquivo",
+            "",
+            "Excel Files (*.xlsx *.xls)"
+        )
+        print(f"Arquivo selecionado: {file_path}")
         if file_path:
             dest = INPUT_DIR / Path(file_path).name
-            shutil.copy(file_path, dest)
-            log_info(self.log_widget, f"Arquivo '{Path(file_path).name}' copiado para a pasta input.")
+            try:
+                # Verifica se origem e destino são o mesmo arquivo
+                if Path(file_path).resolve() == dest.resolve():
+                    self.label_arquivo.setText(f"Arquivo: {Path(file_path).name}")
+                    QMessageBox.information(self, "Arquivo já está na pasta", f"O arquivo '{Path(file_path).name}' já está na pasta de input.")
+                    return
+                print("Antes de mkdir")
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                print("Antes de copy")
+                shutil.copy(file_path, dest)
+                print("Antes de setText")
+                self.label_arquivo.setText(f"Arquivo: {Path(file_path).name}")
+                print("Antes de QMessageBox")
+                QMessageBox.information(self, "Arquivo adicionado", f"Arquivo '{Path(file_path).name}' copiado para a pasta input.")
+                print("Depois de QMessageBox")
+            except Exception as e:
+                print("Erro:", e)
+                QMessageBox.critical(self, "Erro ao copiar", str(e))

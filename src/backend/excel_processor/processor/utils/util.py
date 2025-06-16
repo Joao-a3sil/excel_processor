@@ -22,7 +22,7 @@ def medir_tempo_execucao_total(funcao):
 
 def criar_codigo_identificacao(df, coluna_loja_origem, coluna_data_origem):
     """
-    Cria um código de identificação a partir das 3 primeiras letras da loja/origem + data formatada.
+    Cria um código de identifstdicação a partir das 3 primeiras letras da loja/origem + data formatada.
     A data é convertida para o formato serializado do Excel.
     """
     if coluna_loja_origem not in df.columns or coluna_data_origem not in df.columns:
@@ -74,30 +74,14 @@ def concat_dataframes(dataframes, max_rows):
 
 def medir_tempo_execucao(funcao):
     """
-    Decorador que mostra um spinner animado e tempo decorrido durante a execução da função.
+    Decorador que mostra tempo decorrido durante a execução da função.
+    (Sem spinner para evitar problemas com threads em GUI)
     """
     def wrapper(*args, **kwargs):
-        stop_spinner = False
         tempo_inicial = time.time()
-
-        def spinner():
-            simbolos = "|/-\\"
-            idx = 0
-            while not stop_spinner:
-                tempo_passado = time.time() - tempo_inicial
-                sys.stdout.write(f"\rExecutando {funcao.__name__}... {simbolos[idx % len(simbolos)]} {int(tempo_passado)}s")
-                sys.stdout.flush()
-                idx += 1
-                time.sleep(1)
-            sys.stdout.write("\r" + " " * 50 + "\r")  # Limpa a linha
-
-        t = threading.Thread(target=spinner)
-        t.start()
         resultado = funcao(*args, **kwargs)
-        stop_spinner = True
-        t.join()
         tempo_total = time.time() - tempo_inicial
-        minutos, segundos = divmod(tempo_total, 60)                
+        minutos, segundos = divmod(tempo_total, 60)
         print(f"{funcao.__name__} finalizado em {int(minutos)}:{int(segundos)}.")
         return resultado
     return wrapper

@@ -1,3 +1,4 @@
 [console_scripts]
 run = src.backend.main:main
+run_app = src.frontend.app:main
 

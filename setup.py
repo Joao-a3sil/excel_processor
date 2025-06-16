@@ -26,9 +26,10 @@ setup(
         'dearpygui>=1.9.0',        
     ],
     entry_points={
-        'console_scripts': [
-            # 'run=excel_processor.main:main',
-            'run=src.backend.main:main'
+        'console_scripts': [            
+            'run=src.backend.main:main',
+            'run_app=src.frontend.app:main'
+            
         ],
     },
 )

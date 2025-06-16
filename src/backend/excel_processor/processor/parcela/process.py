@@ -7,7 +7,6 @@ from backend.excel_processor.processor.utils.util import (
 )
 import pandas as pd
 
-
 class ProcessParcela:
     def __init__(self, input_file: str, output_file: str):
         self.input_file = input_file
