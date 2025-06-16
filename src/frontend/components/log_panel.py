@@ -1,12 +1,23 @@
-from dearpygui.dearpygui import add_child_window, window, add_text, add_button
-from frontend.utils.log import LOG_WIDGET
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel
+from frontend.utils.log import LogWidget
 
-def show_main_window():
-    with window(label="Consolidador de Excel", width=600, height=400):
-        add_text("Bem-vindo ao consolidador de Excel!")
-        add_button(label="Gerar Data Base", callback=on_generate_database)
-        add_button(label="Sair", callback=lambda: stop_dearpygui())
-        create_log_panel()
+class LogPanel(QWidget):
+    def __init__(self, on_generate_database, parent=None):
+        super().__init__(parent)
+        self.layout = QVBoxLayout(self)
 
-def create_log_panel():
-    add_child_window(tag=LOG_WIDGET, height=100)
+        self.label = QLabel("Bem-vindo ao consolidador de Excel!")
+        self.layout.addWidget(self.label)
+
+        self.btn_generate = QPushButton("Gerar Data Base")
+        self.btn_generate.clicked.connect(on_generate_database)
+        self.layout.addWidget(self.btn_generate)
+
+        self.btn_exit = QPushButton("Sair")
+        self.layout.addWidget(self.btn_exit)
+
+        self.log_widget = LogWidget()
+        self.layout.addWidget(self.log_widget)
+
+    def get_log_widget(self):
+        return self.log_widget

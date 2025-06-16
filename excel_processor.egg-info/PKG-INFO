@@ -1,28 +1,17 @@
-Metadata-Version: 2.4
-Name: excel_processor
+Metadata-Version: 2.1
+Name: excel-processor
 Version: 0.1.0
 Summary: Gera um data base da C&A a partir de uma pasta de trabalho "Quadro Seguros Diário"
 Home-page: https://github.com/seu_usuario/excel_processor
 Author: João Alonso
 Author-email: joao.alonso@a3sil.com.br
+License: UNKNOWN
+Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
-Requires-Dist: numpy>=2.2.3
-Requires-Dist: openpyxl>=3.1.5
-Requires-Dist: pandas>=2.2.3
-Requires-Dist: dearpygui>=1.9.0
-Dynamic: author
-Dynamic: author-email
-Dynamic: classifier
-Dynamic: description
-Dynamic: description-content-type
-Dynamic: home-page
-Dynamic: requires-dist
-Dynamic: requires-python
-Dynamic: summary
 
 # Excel Processor
 
@@ -95,3 +84,4 @@ run_process.bat
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
+

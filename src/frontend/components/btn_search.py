@@ -1,19 +1,20 @@
 from pathlib import Path
 import shutil
-from dearpygui.dearpygui import add_file_dialog, show_item, hide_item
+from PySide6.QtWidgets import QFileDialog, QPushButton
 
 from frontend.utils.log import log_info
 
-INPUT_DIR = str(Path(__file__).resolve().parent.parent / "backend" / "excel_processor" / "input")
+INPUT_DIR = Path(__file__).resolve().parent.parent / "backend" / "excel_processor" / "input"
 
-def on_file_selected(sender, app_data):
-    selected_file = app_data['file_path_name']
-    if selected_file:
-        dest = Path(INPUT_DIR) / Path(selected_file).name
-        shutil.copy(selected_file, dest)
-        log_info(f"Arquivo '{Path(selected_file).name}' copiado para a pasta input.")
-    hide_item("file_dialog_id")
+class BtnSearch(QPushButton):
+    def __init__(self, log_widget, parent=None):
+        super().__init__("Adicionar arquivo", parent)
+        self.log_widget = log_widget
+        self.clicked.connect(self.show_file_dialog)
 
-def show_file_dialog(sender=None, app_data=None, user_data=None):
-    show_item("file_dialog_id")
-
+    def show_file_dialog(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Selecionar arquivo", "", "Excel Files (*.xlsx *.xls)")
+        if file_path:
+            dest = INPUT_DIR / Path(file_path).name
+            shutil.copy(file_path, dest)
+            log_info(self.log_widget, f"Arquivo '{Path(file_path).name}' copiado para a pasta input.")
