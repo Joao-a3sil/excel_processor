@@ -194,5 +194,6 @@ cython_debug/
 .cursorindexingignore
 
 build/
-input/*
-output/*
+excel_processor.egg-info/
+src/backend/excel_processor/input/
+src/backend/excel_processor/output/
