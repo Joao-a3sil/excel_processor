@@ -27,15 +27,9 @@ class BtnSearch(QPushButton):
                     self.label_arquivo.setText(f"Arquivo: {Path(file_path).name}")
                     QMessageBox.information(self, "Arquivo já está na pasta", f"O arquivo '{Path(file_path).name}' já está na pasta de input.")
                     return
-                print("Antes de mkdir")
                 dest.parent.mkdir(parents=True, exist_ok=True)
-                print("Antes de copy")
                 shutil.copy(file_path, dest)
-                print("Antes de setText")
                 self.label_arquivo.setText(f"Arquivo: {Path(file_path).name}")
-                print("Antes de QMessageBox")
                 QMessageBox.information(self, "Arquivo adicionado", f"Arquivo '{Path(file_path).name}' copiado para a pasta input.")
-                print("Depois de QMessageBox")
             except Exception as e:
-                print("Erro:", e)
                 QMessageBox.critical(self, "Erro ao copiar", str(e))

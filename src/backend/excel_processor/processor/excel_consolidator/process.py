@@ -60,7 +60,7 @@ class excel_consolidator:
             parcela_df.to_excel(writer, sheet_name="Parcela", index=False)
             dih_play_df.to_excel(writer, sheet_name="DIH Pay", index=False)
 
-        print(f"\nArquivo '{self.data_base_file.stem()}' criado com sucesso!")
+        print(f"\nArquivo '{self.data_base_file}' criado com sucesso!")
 
 @medir_tempo_execucao
 def gerar_data_base():
