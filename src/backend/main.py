@@ -1,10 +1,10 @@
 from pathlib import Path
-from src.backend.excel_processor.processor.utils.util import get_input_file, medir_tempo_execucao_total
-from src.backend.excel_processor.processor.bolsa.process import process_bolsa
-from src.backend.excel_processor.processor.novo_bolsa.process import process_novo_bolsa
-from src.backend.excel_processor.processor.parcela.process import process_parcela
-from src.backend.excel_processor.processor.dih_pay.process import process_dih_pay
-from src.backend.excel_processor.processor.excel_consolidator.process import gerar_data_base
+from src.backend.excel_processor.utils.util import get_input_file, medir_tempo_execucao_total
+from src.backend.excel_processor.bolsa.process import process_bolsa
+from src.backend.excel_processor.novo_bolsa.process import process_novo_bolsa
+from src.backend.excel_processor.parcela.process import process_parcela
+from src.backend.excel_processor.dih_pay.process import process_dih_pay
+from src.backend.excel_processor.excel_consolidator.process import gerar_data_base
 import time
 
 @medir_tempo_execucao_total
@@ -16,10 +16,10 @@ def main():
 
     etapas = [
         ("DIH Pay", process_dih_pay),
-        ("Bolsa", process_bolsa),
-        ("Novo Bolsa", process_novo_bolsa),
-        ("Parcela", process_parcela),
-        ("Consolidação", gerar_data_base)
+        # ("Bolsa", process_bolsa),
+        # ("Novo Bolsa", process_novo_bolsa),
+        # ("Parcela", process_parcela),
+        # ("Consolidação", gerar_data_base)
     ]
 
     for nome, func in etapas:
