@@ -5,6 +5,7 @@ from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QPushButton, QP
 from PySide6.QtCore import QMetaObject, Qt, Q_ARG, Slot, Signal
 from src.backend.main import main as backend_main
 from src.frontend.components.btn_search import BtnSearch
+from src.frontend.components.btn_clear_input import BtnClearInput
 
 class QtStream:
     def __init__(self, signal):
@@ -34,12 +35,14 @@ class MainWindow(QMainWindow):
         self.btn_search = BtnSearch(self.label_arquivo)                
         self.btn_sair = QPushButton("Sair")
         self.btn_sair.clicked.connect(self.on_btn_sair_clicked)
+        self.btn_limpar = BtnClearInput(self.label_arquivo)
 
         layout = QVBoxLayout()
         layout.addWidget(self.label_arquivo)
         layout.addWidget(self.btn_search)
         layout.addWidget(self.btn_generate)
         layout.addWidget(self.progress_bar)        
+        layout.addWidget(self.btn_limpar)
         layout.addWidget(self.btn_sair)
 
         container = QWidget()

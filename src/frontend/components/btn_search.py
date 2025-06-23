@@ -23,7 +23,6 @@ class BtnSearch(QPushButton):
         if file_path:
             dest = INPUT_DIR / Path(file_path).name
             try:
-                # Verifica se origem e destino são o mesmo arquivo
                 if Path(file_path).resolve() == dest.resolve():
                     self.label_arquivo.setText(f"Arquivo: {Path(file_path).name}")
                     QMessageBox.information(self, "Arquivo já está na pasta", f"O arquivo '{Path(file_path).name}' já está na pasta de input.")
