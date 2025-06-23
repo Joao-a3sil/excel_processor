@@ -2,8 +2,9 @@ from pathlib import Path
 import shutil
 from PySide6.QtWidgets import QFileDialog, QPushButton, QMessageBox
 
-INPUT_DIR = Path(__file__).resolve().parent.parent / "backend" / "excel_processor" / "input"
+INPUT_DIR = Path(__file__).resolve().parent.parent.parent.parent / "src" / "backend" / "excel_processor" / "input"
 print(f"INPUT_DIR: {INPUT_DIR}")
+# /home/jp/Documents/excel_processor/src/backend/excel_processor/input/
 
 class BtnSearch(QPushButton):
     def __init__(self, label_arquivo, parent=None):
