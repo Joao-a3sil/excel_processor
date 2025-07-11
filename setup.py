@@ -20,10 +20,10 @@ setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'numpy>=2.2.3',
-        'openpyxl>=3.1.5',
-        'pandas>=2.2.3',
-        'dearpygui>=1.9.0',        
+	'numpy>=2.2.3',
+	'openpyxl>=3.1.5',
+	'pandas>=2.2.3',
+	'pyside6>=6.4.1',
     ],
     entry_points={
         'console_scripts': [            

@@ -16,10 +16,10 @@ def main():
 
     etapas = [
         ("DIH Pay", process_dih_pay),
-        ("Bolsa", process_bolsa),
-        ("Novo Bolsa", process_novo_bolsa),
-        ("Parcela", process_parcela),
-        ("Consolidação", gerar_data_base)
+        # ("Bolsa", process_bolsa),
+        # ("Novo Bolsa", process_novo_bolsa),
+        # ("Parcela", process_parcela),
+        # ("Consolidação", gerar_data_base)
     ]
 
     for nome, func in etapas:

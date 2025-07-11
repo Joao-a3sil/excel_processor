@@ -1,7 +1,8 @@
 # filepath: src/frontend/windows/main_window.py
 import sys
 import threading
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QPushButton, QProgressBar, QMessageBox, QLabel, QApplication, QGroupBox
+import os
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QPushButton, QProgressBar, QMessageBox, QLabel, QApplication, QGroupBox, QFileDialog
 from PySide6.QtCore import QMetaObject, Qt, Q_ARG, Slot, Signal
 from PySide6.QtGui import QIcon
 from src.backend.main import main as backend_main
@@ -14,6 +15,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
+        self.output_dir = None  # <-- novo atributo
         self.setWindowTitle("Excel Processor - Frontend")
         self.resize(600, 400)
         self.setStyleSheet("""
@@ -49,6 +51,10 @@ class MainWindow(QMainWindow):
         self.btn_sair.setStyleSheet("background-color: #555; color: white;")
         self.btn_sair.setIcon(QIcon.fromTheme("application-exit"))
         self.btn_sair.clicked.connect(self.on_btn_sair_clicked)
+        self.btn_select_output = QPushButton("Selecionar Pasta de Saída")
+        self.btn_select_output.setStyleSheet("background-color: #2196F3; color: white;")
+        self.btn_select_output.setIcon(QIcon.fromTheme("folder"))
+        self.btn_select_output.clicked.connect(self.on_select_output_dir)
 
     def _setup_layout(self):
         layout = QVBoxLayout()
@@ -63,6 +69,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.label_arquivo)
         layout.addWidget(self.btn_search)
         layout.addWidget(self.progress_bar)
+        layout.addWidget(self.btn_select_output)  # <-- adicione antes do grupo de ações
 
         group = QGroupBox("Ações")
         group_layout = QVBoxLayout()
@@ -81,6 +88,9 @@ class MainWindow(QMainWindow):
 
     def on_generate_database(self):
         """Inicia o processamento do backend em uma thread separada."""
+        if not self.output_dir:
+            self.show_error("Selecione a pasta de saída antes de gerar o Data Base.")
+            return
         self.progress_bar.show()
         self.btn_generate.setEnabled(False)
         process_name = "Gerar Data Base"
@@ -90,6 +100,7 @@ class MainWindow(QMainWindow):
             sys_stdout_original = sys.stdout
             try:
                 sys.stdout = PrintToSignalStream(self.backend_message)
+                os.environ["EXCEL_PROCESSOR_OUTPUT_DIR"] = self.output_dir  # <-- aqui
                 backend_main()
             except Exception as e:
                 self.backend_message.emit(f"Erro: {e}")
@@ -129,3 +140,11 @@ class MainWindow(QMainWindow):
 
     def on_btn_sair_clicked(self):
         QApplication.quit()
+
+    def on_select_output_dir(self):
+        dir_path = QFileDialog.getExistingDirectory(self, "Selecione a pasta de saída")
+        if dir_path:
+            self.output_dir = dir_path
+            self.statusBar().showMessage(f"Pasta de saída: {dir_path}")
+        else:
+            self.statusBar().showMessage("Pasta de saída não selecionada")
