@@ -1,25 +1,24 @@
 from pathlib import Path
-from src.backend.excel_processor.utils.util import get_input_file, medir_tempo_execucao_total
-from src.backend.excel_processor.bolsa.process import process_bolsa
-from src.backend.excel_processor.novo_bolsa.process import process_novo_bolsa
-from src.backend.excel_processor.parcela.process import process_parcela
-from src.backend.excel_processor.dih_pay.process import process_dih_pay
-from src.backend.excel_processor.excel_consolidator.process import gerar_data_base
+from src.backend.utils.util import get_input_file, medir_tempo_execucao_total
+from src.backend.bolsa.process import process_bolsa
+from src.backend.novo_bolsa.process import process_novo_bolsa
+from src.backend.parcela.process import process_parcela
+from src.backend.dih_pay.process import process_dih_pay
+from src.backend.excel_consolidator.process import gerar_data_base
 import time
 
 @medir_tempo_execucao_total
 def main():    
     start = time.time()
-    arquivo_processado = get_input_file()
-    # arquivo_processado = Path(arquivo_processado).stem
+    arquivo_processado = get_input_file()    
     print(f"Arquivo Processado: {arquivo_processado.stem}")
 
     etapas = [
         ("DIH Pay", process_dih_pay),
-        # ("Bolsa", process_bolsa),
-        # ("Novo Bolsa", process_novo_bolsa),
-        # ("Parcela", process_parcela),
-        # ("Consolidação", gerar_data_base)
+        ("Bolsa", process_bolsa),
+        ("Novo Bolsa", process_novo_bolsa),
+        ("Parcela", process_parcela),
+        ("Consolidação", gerar_data_base)
     ]
 
     for nome, func in etapas:
