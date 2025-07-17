@@ -1,8 +1,9 @@
 from pathlib import Path
 import os
 from PySide6.QtWidgets import QPushButton, QMessageBox
+from src.backend.utils.util import get_project_path
 
-INPUT_DIR = Path(__file__).resolve().parent.parent.parent.parent / "src" / "backend" / "excel_processor" / "input"
+INPUT_DIR = get_project_path() / "input"
 
 class BtnClearInput(QPushButton):
     def __init__(self, label_arquivo, parent=None):

@@ -8,6 +8,7 @@ from PySide6.QtGui import QIcon
 from src.backend.main import main as backend_main
 from src.frontend.components.btn_search import BtnSearch
 from src.frontend.components.btn_clear_input import BtnClearInput
+from src.frontend.components.btn_select_output import BtnSelectOutput
 from src.frontend.utils.print_to_signal_stream import PrintToSignalStream
 
 class MainWindow(QMainWindow):
@@ -51,10 +52,7 @@ class MainWindow(QMainWindow):
         self.btn_sair.setStyleSheet("background-color: #555; color: white;")
         self.btn_sair.setIcon(QIcon.fromTheme("application-exit"))
         self.btn_sair.clicked.connect(self.on_btn_sair_clicked)
-        self.btn_select_output = QPushButton("Selecionar Pasta de Saída")
-        self.btn_select_output.setStyleSheet("background-color: #2196F3; color: white;")
-        self.btn_select_output.setIcon(QIcon.fromTheme("folder"))
-        self.btn_select_output.clicked.connect(self.on_select_output_dir)
+        self.btn_select_output = BtnSelectOutput(parent=self, callback=self.on_output_dir_selected)
 
     def _setup_layout(self):
         layout = QVBoxLayout()
@@ -139,12 +137,8 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage("Pronto")
 
     def on_btn_sair_clicked(self):
-        QApplication.quit()
+        QApplication.quit()   
 
-    def on_select_output_dir(self):
-        dir_path = QFileDialog.getExistingDirectory(self, "Selecione a pasta de saída")
-        if dir_path:
-            self.output_dir = dir_path
-            self.statusBar().showMessage(f"Pasta de saída: {dir_path}")
-        else:
-            self.statusBar().showMessage("Pasta de saída não selecionada")
+    def on_output_dir_selected(self, dir_path):
+        self.output_dir = dir_path
+        self.statusBar().showMessage(f"Pasta de saída: {dir_path}")

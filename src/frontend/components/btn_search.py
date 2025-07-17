@@ -2,7 +2,11 @@ from pathlib import Path
 import shutil
 from PySide6.QtWidgets import QFileDialog, QPushButton, QMessageBox
 
-INPUT_DIR = Path(__file__).resolve().parent.parent.parent.parent / "src" / "backend" / "excel_processor" / "input"
+def get_project_root():
+    return Path(__file__).resolve().parents[3]  # Ajuste o número conforme necessário
+
+INPUT_DIR = get_project_root() / "input"
+
 print(f"INPUT_DIR: {INPUT_DIR}")
 # /home/jp/Documents/excel_processor/src/backend/excel_processor/input/
 
