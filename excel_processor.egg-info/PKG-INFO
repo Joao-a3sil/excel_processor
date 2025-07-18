@@ -5,14 +5,14 @@ Summary: Gera um data base da C&A a partir de uma pasta de trabalho "Quadro Segu
 Home-page: https://github.com/seu_usuario/excel_processor
 Author: João Alonso
 Author-email: joao.alonso@a3sil.com.br
+License: MIT
 Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 Requires-Dist: numpy>=1.26.0
 Requires-Dist: openpyxl>=3.1.5
-Requires-Dist: pandas>=2.2.0
+Requires-Dist: pandas>=2.2.3
 Requires-Dist: pyside6>=6.4.1
 Dynamic: author
 Dynamic: author-email
@@ -20,6 +20,7 @@ Dynamic: classifier
 Dynamic: description
 Dynamic: description-content-type
 Dynamic: home-page
+Dynamic: license
 Dynamic: requires-dist
 Dynamic: requires-python
 Dynamic: summary

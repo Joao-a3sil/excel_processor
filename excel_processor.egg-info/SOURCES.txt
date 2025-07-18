@@ -26,6 +26,7 @@ excel_processor/src/frontend/__init__.py
 excel_processor/src/frontend/components/__init__.py
 excel_processor/src/frontend/components/btn_clear_input.py
 excel_processor/src/frontend/components/btn_search.py
+excel_processor/src/frontend/components/btn_select_output.py
 excel_processor/src/frontend/components/components.py
 excel_processor/src/frontend/utils/__init__.py
 excel_processor/src/frontend/utils/print_to_signal_stream.py
