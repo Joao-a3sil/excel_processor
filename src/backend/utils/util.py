@@ -162,3 +162,7 @@ def filtro():
         dih_play_df.to_excel(writer, sheet_name="DIH Pay", index=False)
 
     print(f"Arquivo '{output_file}' criado com sucesso!")
+
+    def get_output_file():
+        output_file = '../output/'
+        return output_file

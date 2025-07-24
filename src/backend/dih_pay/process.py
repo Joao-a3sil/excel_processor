@@ -64,9 +64,8 @@ class DihPayProcessor:
 @medir_tempo_execucao
 def process_dih_pay():    
     input_file = get_input_file()
-    output_dir = os.environ.get("EXCEL_PROCESSOR_OUTPUT_DIR")
-    if not output_dir:
-        raise Exception("Diretório de saída não definido.")
+    output_dir = "output"
+    os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, "Dih_Pay_Data_base.xlsx")
     processor = DihPayProcessor(str(input_file), str(output_file))
     processor.process()

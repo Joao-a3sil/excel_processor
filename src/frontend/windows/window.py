@@ -52,7 +52,7 @@ class MainWindow(QMainWindow):
         self.btn_sair.setStyleSheet("background-color: #555; color: white;")
         self.btn_sair.setIcon(QIcon.fromTheme("application-exit"))
         self.btn_sair.clicked.connect(self.on_btn_sair_clicked)
-        self.btn_select_output = BtnSelectOutput(parent=self, callback=self.on_output_dir_selected)
+        self.btn_select_output = BtnSelectOutput(parent=self, output_dir="output")
 
     def _setup_layout(self):
         layout = QVBoxLayout()
@@ -86,9 +86,6 @@ class MainWindow(QMainWindow):
 
     def on_generate_database(self):
         """Inicia o processamento do backend em uma thread separada."""
-        if not self.output_dir:
-            self.show_error("Selecione a pasta de saída antes de gerar o Data Base.")
-            return
         self.progress_bar.show()
         self.btn_generate.setEnabled(False)
         process_name = "Gerar Data Base"
@@ -98,7 +95,7 @@ class MainWindow(QMainWindow):
             sys_stdout_original = sys.stdout
             try:
                 sys.stdout = PrintToSignalStream(self.backend_message)
-                os.environ["EXCEL_PROCESSOR_OUTPUT_DIR"] = self.output_dir  # <-- aqui
+                os.environ["EXCEL_PROCESSOR_OUTPUT_DIR"] = "../output/"  # caminho fixo
                 backend_main()
             except Exception as e:
                 self.backend_message.emit(f"Erro: {e}")
@@ -137,8 +134,4 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage("Pronto")
 
     def on_btn_sair_clicked(self):
-        QApplication.quit()   
-
-    def on_output_dir_selected(self, dir_path):
-        self.output_dir = dir_path
-        self.statusBar().showMessage(f"Pasta de saída: {dir_path}")
+        QApplication.quit()
