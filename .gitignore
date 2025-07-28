@@ -195,5 +195,5 @@ cython_debug/
 
 build/
 excel_processor.egg-info/
-src/backend/excel_processor/input/
-src/backend/excel_processor/output/
+input/
+output/
