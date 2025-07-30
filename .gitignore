@@ -197,3 +197,5 @@ build/
 excel_processor.egg-info/
 input/
 output/
+excel_processor/input/
+excel_processor/output/
