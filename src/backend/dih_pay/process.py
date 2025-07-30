@@ -64,9 +64,8 @@ class DihPayProcessor:
 @medir_tempo_execucao
 def process_dih_pay():    
     input_file = get_input_file()
-    output_dir = "output"
-    os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, "Dih_Pay_Data_base.xlsx")
+    output_file = get_project_path("output", "Dih_Pay_Data_base.xlsx")
+
     processor = DihPayProcessor(str(input_file), str(output_file))
     processor.process()
     print(f"\nArquivo '{os.path.basename(output_file)}' criado com sucesso!")

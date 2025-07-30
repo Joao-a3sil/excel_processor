@@ -10,6 +10,7 @@ class BtnClearInput(QPushButton):
         super().__init__("Limpar arquivos de input", parent)
         self.label_arquivo = label_arquivo
         self.clicked.connect(self.limpar_arquivos_input)
+        print(f"INPUT_DIR: {INPUT_DIR}")
 
     def limpar_arquivos_input(self):
         reply = QMessageBox.question(

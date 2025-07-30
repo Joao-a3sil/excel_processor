@@ -4,6 +4,7 @@ from src.backend.bolsa.process import process_bolsa
 from src.backend.novo_bolsa.process import process_novo_bolsa
 from src.backend.parcela.process import process_parcela
 from src.backend.dih_pay.process import process_dih_pay
+from src.backend.parcela_self.process import process_parcela_self
 from src.backend.excel_consolidator.process import gerar_data_base
 import time
 
@@ -14,10 +15,11 @@ def main():
     print(f"Arquivo Processado: {arquivo_processado.stem}")
 
     etapas = [
-        ("DIH Pay", process_dih_pay),
-        ("Bolsa", process_bolsa),
-        ("Novo Bolsa", process_novo_bolsa),
-        ("Parcela", process_parcela),
+        # ("DIH Pay", process_dih_pay),
+        # ("Bolsa", process_bolsa),
+        # ("Novo Bolsa", process_novo_bolsa),
+        # ("Parcela", process_parcela),
+        # ("Parcela Self", process_parcela_self),
         ("Consolidação", gerar_data_base)
     ]
 
